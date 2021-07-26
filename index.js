@@ -16,14 +16,14 @@ for (const file of commandFiles) {
 const prefix = config.prefix; 
 
 client.on("message", message => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
 
 	if (!client.commands.has(command)) {
-        message.reply('This command does not exist, please type **pugs!help** to see the full list of commands.');
-        return;  
-    } 
+    message.reply('This command does not exist, please type **pugs!help** to see the full list of commands.');
+    return;  
+  } 
 
 	try {
 		client.commands.get(command).execute(message, args);
@@ -36,5 +36,5 @@ client.on("message", message => {
 client.login(process.env.TOKEN);
 
 client.once('ready', () => {
-    console.log('OWPugs is ready for usage.');
+	console.log('OWPugs is ready for usage.');
 });
