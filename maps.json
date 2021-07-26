@@ -1,4 +1,7 @@
 [
+  {"name":"Hanamura", "mode":"Assault", "flag":":flag_jp:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/hanamura.jpg"}, 
+  {"name":"Temple of Anubis", "mode":"Assault", "flag":":flag_eg:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/temple-of-anubis.jpg"}, 
+  {"name":"Volskaya Industries", "mode":"Assault", "flag":":flag_ru:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/volskaya-industries.jpg"},
   {"name":"Busan", "mode":"Control", "flag":":flag_kr:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/busan.jpg"}, 
   {"name":"Ilios", "mode":"Control", "flag":":flag_gr:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/ilios.jpg"}, 
   {"name":"Lijiang Tower", "mode":"Control", "flag":":flag_cn:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/lijiang-tower.jpg"}, 
