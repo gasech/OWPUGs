@@ -11,16 +11,16 @@ module.exports = {
 		let commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 		let commandsMessage = `**PUGs Commands**\n\n`;
 
-    commandFiles = commandFiles.map((command) => {
-			if(command.endsWith(".js")){
-				command = command.replace(".js","");
+		commandFiles = commandFiles.map((command) => {
+			if (command.endsWith(".js")) {
+				command = command.replace(".js", "");
 				return command;
 			}
-    });
-		
-		for(let i of commandFiles){
+		});
+
+		for (let i of commandFiles) {
 			const commandFile = require(`./${i}`);
-			console.log(commandFile);		
+			console.log(commandFile);
 			commandsMessage += `**Command**: ${prefix}${commandFile.name}\n`;
 			commandsMessage += `**Description**: ${commandFile.description}\n\n`;
 		}
