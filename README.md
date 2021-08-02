@@ -6,7 +6,7 @@ Discord bot application that helps players sort out teams in Overwatch based on 
 - [x] Setup Discord Bot for the first time
 - [x] Setup Depedencies
 - [x] Command Handler
-- [ ] Pickup Players from Voice Channel
+- [x] Pickup Players from Voice Channel
 - [ ] Arrange Teams
 - [ ] Choose Maps
 - [ ] Register wins and losses from players
