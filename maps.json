@@ -1,21 +1,116 @@
 [
-  {"name":"Hanamura", "mode":"Assault", "flag":":flag_jp:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/hanamura.jpg"}, 
-  {"name":"Temple of Anubis", "mode":"Assault", "flag":":flag_eg:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/temple-of-anubis.jpg"}, 
-  {"name":"Volskaya Industries", "mode":"Assault", "flag":":flag_ru:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/volskaya-industries.jpg"},
-  {"name":"Busan", "mode":"Control", "flag":":flag_kr:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/busan.jpg"}, 
-  {"name":"Ilios", "mode":"Control", "flag":":flag_gr:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/ilios.jpg"}, 
-  {"name":"Lijiang Tower", "mode":"Control", "flag":":flag_cn:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/lijiang-tower.jpg"}, 
-  {"name":"Nepal", "mode":"Control", "flag":":flag_np:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/nepal.jpg"}, 
-  {"name":"Oasis", "mode":"Control", "flag":":flag_iq:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/oasis.jpg"}, 
-  {"name":"Dorado", "mode":"Escort", "flag":":flag_mx:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/dorado.jpg"},
-  {"name":"Havana", "mode":"Escort", "flag":":flag_cu:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/havana.jpg"},
-  {"name":"Junkertown", "mode":"Escort", "flag":":flag_au:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/junkertown.jpg"},
-  {"name":"Rialto", "mode":"Escort", "flag":":flag_it:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/rialto.jpg"},
-  {"name":"Route 66", "mode":"Escort", "flag":":flag_us:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/route-66.jpg"},
-  {"name":"Watchpoint: Gibraltar", "mode":"Escort", "flag":":united_nations:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/watchpoint-gibraltar.jpg"},
-  {"name":"Blizzard World", "mode":"Hybrid", "flag":":flag_us:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/blizzard-world.jpg"},
-  {"name":"Eichenwalde", "mode":"Hybrid", "flag":":flag_de:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/eichenwalde.jpg"},
-  {"name":"Hollywood", "mode":"Hybrid", "flag":":flag_us:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/hollywood.jpg"},
-  {"name":"King's Row", "mode":"Hybrid", "flag":":england:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/kings-row.jpg"},
-  {"name":"Numbani", "mode":"Hybrid", "flag":":flag_ng:", "imageSource":"https://static.playoverwatch.com/img/pages/maps/images/numbani.jpg"}  
+  {
+    "name": "Hanamura",
+    "mode": "Assault",
+    "flag": ":flag_jp:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/hanamura.jpg"
+  },
+  {
+    "name": "Temple of Anubis",
+    "mode": "Assault",
+    "flag": ":flag_eg:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/temple-of-anubis.jpg"
+  },
+  {
+    "name": "Volskaya Industries",
+    "mode": "Assault",
+    "flag": ":flag_ru:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/volskaya-industries.jpg"
+  },
+  {
+    "name": "Busan",
+    "mode": "Control",
+    "flag": ":flag_kr:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/busan.jpg"
+  },
+  {
+    "name": "Ilios",
+    "mode": "Control",
+    "flag": ":flag_gr:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/ilios.jpg"
+  },
+  {
+    "name": "Lijiang Tower",
+    "mode": "Control",
+    "flag": ":flag_cn:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/lijiang-tower.jpg"
+  },
+  {
+    "name": "Nepal",
+    "mode": "Control",
+    "flag": ":flag_np:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/nepal.jpg"
+  },
+  {
+    "name": "Oasis",
+    "mode": "Control",
+    "flag": ":flag_iq:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/oasis.jpg"
+  },
+  {
+    "name": "Dorado",
+    "mode": "Escort",
+    "flag": ":flag_mx:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/dorado.jpg"
+  },
+  {
+    "name": "Havana",
+    "mode": "Escort",
+    "flag": ":flag_cu:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/havana.jpg"
+  },
+  {
+    "name": "Junkertown",
+    "mode": "Escort",
+    "flag": ":flag_au:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/junkertown.jpg"
+  },
+  {
+    "name": "Rialto",
+    "mode": "Escort",
+    "flag": ":flag_it:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/rialto.jpg"
+  },
+  {
+    "name": "Route 66",
+    "mode": "Escort",
+    "flag": ":flag_us:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/route-66.jpg"
+  },
+  {
+    "name": "Watchpoint: Gibraltar",
+    "mode": "Escort",
+    "flag": ":united_nations:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/watchpoint-gibraltar.jpg"
+  },
+  {
+    "name": "Blizzard World",
+    "mode": "Hybrid",
+    "flag": ":flag_us:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/blizzard-world.jpg"
+  },
+  {
+    "name": "Eichenwalde",
+    "mode": "Hybrid",
+    "flag": ":flag_de:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/eichenwalde.jpg"
+  },
+  {
+    "name": "Hollywood",
+    "mode": "Hybrid",
+    "flag": ":flag_us:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/hollywood.jpg"
+  },
+  {
+    "name": "King's Row",
+    "mode": "Hybrid",
+    "flag": ":england:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/kings-row.jpg"
+  },
+  {
+    "name": "Numbani",
+    "mode": "Hybrid",
+    "flag": ":flag_ng:",
+    "imageSource": "https://static.playoverwatch.com/img/pages/maps/images/numbani.jpg"
+  }
 ]

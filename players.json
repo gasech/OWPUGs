@@ -1,0 +1,12 @@
+[
+  {
+    "user_id": 493204902940,
+    "server_id": 202189301893,
+    "name": "Player",
+    "roles": ["Main Tank", "Off Tank"],
+    "wins": 3,
+    "loses": 5,
+    "matches_without_playing": 1,
+    "active": false
+  }
+]
