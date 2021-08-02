@@ -2,6 +2,7 @@ require('dotenv').config();
 const fs = require('fs');
 const Discord = require('discord.js');
 const config = require('./config.json');
+const embed = require('./embeds');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -13,7 +14,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
-const prefix = config.prefix; 
+const prefix = config.prefix;
 
 client.on("message", message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -21,7 +22,7 @@ client.on("message", message => {
 	const command = args.shift().toLowerCase();
 
 	if (!client.commands.has(command)) {
-    message.reply('This command does not exist, please type **pugs!help** to see the full list of commands.');
+    embed.sendReply(message, 'This command does not exist, please type **pugs!help** to see the full list of commands.');
     return;  
   } 
 
@@ -29,7 +30,7 @@ client.on("message", message => {
 		client.commands.get(command).execute(message, args);
 	} catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		embed.sendReply(message, 'there was an error trying to execute that command!');
 	}
 }); 
 
