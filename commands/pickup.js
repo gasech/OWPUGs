@@ -1,5 +1,6 @@
-const embed = require('../embeds');
 const config = require('../config.json');
+const fs = require('fs');
+const embed = require('../embeds');
 const maps = require('../maps.json');
 
 module.exports = {
@@ -9,12 +10,14 @@ module.exports = {
 		if (!message.member.voice.channel) return embed.sendReply(message, `You cannot start picking up players since you are not in a voice channel.`);
 		const voiceInfo = message.member.voice.channel.members.array();
 		if (voiceInfo.length <= 0) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
+		
+		let players = getJsonPlayers(); // JSOn
+
+		console.log(players);
+
 		voiceInfo.map((voiceUser) => {
 			const playerName = voiceUser.nickname ? voiceUser.nickname : voiceUser.user.username;
 			const playerRoles = getPlayerRoles(message, voiceUser);
-
-			console.log(`Name: ${playerName}`);
-			console.log(`Roles: ${playerRoles}`);
 		});
 
 		chooseMap(message);
@@ -36,4 +39,25 @@ const getPlayerRoles = (message, voiceUser) => {
 	});
 
 	return roles;
+}
+
+const getJsonPlayers = () => {
+		let players;
+
+		try {
+			const data = JSON.parse(fs.readFileSync('./players.json', 'utf8'));
+			players = data;
+		} catch (err) {
+			console.error(err)
+		}
+ 
+		return players;
+}
+
+const setJsonPlayers = (players) => {
+	try {
+		const data = fs.writeFileSync('./players.json', JSON.stringify(players, null, 2))
+	} catch (err) {
+		console.error(err)
+	}
 }

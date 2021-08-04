@@ -1,7 +1,7 @@
-require('dotenv').config(); 
+const config = require('./config.json');
+require('dotenv').config();
 const fs = require('fs');
 const Discord = require('discord.js');
-const config = require('./config.json');
 const embed = require('./embeds');
 
 const client = new Discord.Client();
@@ -24,7 +24,7 @@ client.on("message", message => {
 	if (!client.commands.has(command)) {
     embed.sendReply(message, 'This command does not exist, please type **pugs!help** to see the full list of commands.');
     return;  
-  } 
+  }
 
 	try {
 		client.commands.get(command).execute(message, args);
@@ -32,7 +32,7 @@ client.on("message", message => {
 		console.error(error);
 		embed.sendReply(message, 'there was an error trying to execute that command!');
 	}
-}); 
+});
 
 client.login(process.env.TOKEN);
 
