@@ -10,7 +10,7 @@ module.exports = {
 		if (!message.member.voice.channel) return embed.sendReply(message, `You cannot start picking up players since you are not in a voice channel.`);
 		const voiceInfo = message.member.voice.channel.members.array();
 		if (voiceInfo.length <= 0) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
-		
+
 		let players = getJsonPlayers(); // JSOn
 
 		console.log(players);
@@ -42,16 +42,16 @@ const getPlayerRoles = (message, voiceUser) => {
 }
 
 const getJsonPlayers = () => {
-		let players;
+	let players;
 
-		try {
-			const data = JSON.parse(fs.readFileSync('./players.json', 'utf8'));
-			players = data;
-		} catch (err) {
-			console.error(err)
-		}
- 
-		return players;
+	try {
+		const data = JSON.parse(fs.readFileSync('./players.json', 'utf8'));
+		players = data;
+	} catch (err) {
+		console.error(err)
+	}
+
+	return players;
 }
 
 const setJsonPlayers = (players) => {
