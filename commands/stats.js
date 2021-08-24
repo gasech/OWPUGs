@@ -11,7 +11,6 @@ module.exports = {
 			const playerID = message.author.id;
 			sendStats(message, playerID, players);
 		} else {
-			console.log(args.length);
 			if (args.length !== 1) return embed.sendReply(message, `Please use **pugs!stats @user**`);
 			const taggedUser = args[0];
 			const playerID = taggedUser.replaceAll(/[<@!>]/ig, '');
