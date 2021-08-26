@@ -20,15 +20,14 @@ module.exports = {
 				const playerName = voiceUser.nickname ? voiceUser.nickname : voiceUser.user.username;
 				const playerRoles = getPlayerRoles(message, voiceUser);
 
-				const indexUserID = players.findIndex(player => player.user_id === playerID);
-				const indexServerID = players.findIndex(player => player.server_id === serverID);
+				const indexUser = players.findIndex(player => player.user_id === playerID && player.server_id === serverID);
 				const notFound = -1; // If not found returns -1
 
-				if (indexUserID != notFound && indexServerID != notFound) {
+				if (indexUser != notFound) {
 					console.log(`Found in Server and User: ${playerName}`);
-					players[indexUserID].name = playerName;
-					players[indexUserID].roles = playerRoles;
-					players[indexUserID].active = true;
+					players[indexUser].name = playerName;
+					players[indexUser].roles = playerRoles;
+					players[indexUser].active = true;
 				} else {
 					console.log(`Not found in Server and User: ${playerName}`);
 					players.push({
