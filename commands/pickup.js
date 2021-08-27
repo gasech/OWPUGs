@@ -6,7 +6,7 @@ const maps = require('../maps.json');
 module.exports = {
 	name: 'pickup',
 	description: 'Pickup players from voice channel and sends message with teams',
-	execute(message, args) {
+	execute(message) {
 		try {
 			if (!message.member.voice.channel) return embed.sendReply(message, `You cannot start picking up players since you are not in a voice channel.`);
 			const voiceInfo = message.member.voice.channel.members.array();
@@ -70,7 +70,6 @@ const getPlayerRoles = (message, voiceUser) => {
 			roles.push(role.name);
 		}
 	});
-
 	return roles;
 }
 
@@ -98,7 +97,6 @@ const makeAllInactive = (players) => { // Makes all players inactive again
 		player.active = false;
 		return player;
 	});
-
 	return players;
 }
 
@@ -116,7 +114,6 @@ const splitRoles = (players, roleList) => {
 			}
 		});
 	});
-
 	return roleList;
 }
 
