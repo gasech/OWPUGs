@@ -11,25 +11,32 @@ module.exports = {
 			if (!message.member.voice.channel) return embed.sendReply(message, `You cannot start picking up players since you are not in a voice channel.`);
 			const voiceInfo = message.member.voice.channel.members.array();
 			if (voiceInfo.length <= 0) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
-			let players = getJsonPlayers();
-			console.log("Validating Players:");
+			let players = readPlayersJson();
 			const serverID = message.guild.id;
+			
+			let roleList = {
+				MainTank: [],
+				OffTank: [],
+				DPSHitscan: [],
+				DPSFlex: [],
+				FlexSupport: [],
+				MainSupport: []
+			};
 
-			voiceInfo.map((voiceUser) => {
+			voiceInfo.forEach((voiceUser) => {
 				const playerID = voiceUser.id;
 				const playerName = voiceUser.nickname ? voiceUser.nickname : voiceUser.user.username;
 				const playerRoles = getPlayerRoles(message, voiceUser);
 
 				const indexUser = players.findIndex(player => player.user_id === playerID && player.server_id === serverID);
-				const notFound = -1; // If not found returns -1
+				// If not found returns -1
+				const notFound = -1; // Made a const for better understanding of the code
 
 				if (indexUser != notFound) {
-					console.log(`Found in Server and User: ${playerName}`);
 					players[indexUser].name = playerName;
 					players[indexUser].roles = playerRoles;
 					players[indexUser].active = true;
 				} else {
-					console.log(`Not found in Server and User: ${playerName}`);
 					players.push({
 						user_id: playerID,
 						server_id: serverID,
@@ -43,23 +50,20 @@ module.exports = {
 				}
 			});
 
-			players = makeAllInactive(players);
-			setJsonPlayers(players);
-			chooseMap(message);
+			roleList = splitRoles(players, roleList); 
+			players = makeAllInactive(players); // Makes all players inactive again
+			writePlayersJson(players); // Writes over players.json file
+			chooseMap(message); // Chooses the map
 		} catch (err) {
 			console.log(err);
 		}
 	},
 };
 
-const chooseMap = (message) => {
-	embed.sendMap(message, maps[Math.floor(Math.random() * maps.length)]);
-};
-
 const getPlayerRoles = (message, voiceUser) => {
 	const roles = [];
 
-	voiceUser._roles.map((roleId) => {
+	voiceUser._roles.forEach((roleId) => {
 		const role = message.guild.roles.cache.find(r => r.id === roleId)
 		if (["Main Tank", "Off Tank", "DPS Flex", "DPS Hitscan", "Main Support", "Flex Support"].includes(role.name)) {
 			roles.push(role.name);
@@ -69,7 +73,7 @@ const getPlayerRoles = (message, voiceUser) => {
 	return roles;
 }
 
-const getJsonPlayers = () => {
+const readPlayersJson = () => {
 	let players;
 
 	try {
@@ -82,7 +86,7 @@ const getJsonPlayers = () => {
 	return players;
 }
 
-const setJsonPlayers = (players) => {
+const writePlayersJson = (players) => {
 	try {
 		fs.writeFileSync('./players.json', JSON.stringify(players, null, 2))
 	} catch (err) {
@@ -98,3 +102,19 @@ const makeAllInactive = (players) => {
 
 	return players;
 }
+
+const splitRoles = (players, roleList) => {
+	players.forEach((player) => {
+		if (!player.active) return;
+		player.roles.forEach((role) => {
+			role = role.replace(" ","");
+			roleList[role].push(player.name);
+		});
+	});
+
+	return roleList;
+}
+
+const chooseMap = (message) => {
+	embed.sendMap(message, maps[Math.floor(Math.random() * maps.length)]);
+};
