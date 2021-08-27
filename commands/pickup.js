@@ -13,7 +13,7 @@ module.exports = {
 			if (voiceInfo.length <= 0) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
 			let players = readPlayersJson();
 			const serverID = message.guild.id;
-			
+
 			let roleList = {
 				MainTank: [],
 				OffTank: [],
@@ -50,10 +50,11 @@ module.exports = {
 				}
 			});
 
-			roleList = splitRoles(players, roleList); 
-			players = makeAllInactive(players); // Makes all players inactive again
-			writePlayersJson(players); // Writes over players.json file
-			chooseMap(message); // Chooses the map
+			roleList = splitRoles(players, roleList);
+			console.log(roleList);
+			players = makeAllInactive(players);
+			writePlayersJson(players);
+			chooseMap(message);
 		} catch (err) {
 			console.log(err);
 		}
@@ -75,18 +76,16 @@ const getPlayerRoles = (message, voiceUser) => {
 
 const readPlayersJson = () => {
 	let players;
-
 	try {
 		const data = JSON.parse(fs.readFileSync('./players.json', 'utf8'));
 		players = data;
 	} catch (err) {
 		console.error(err)
 	}
-
 	return players;
 }
 
-const writePlayersJson = (players) => {
+const writePlayersJson = (players) => { // Writes over players.json file
 	try {
 		fs.writeFileSync('./players.json', JSON.stringify(players, null, 2))
 	} catch (err) {
@@ -94,7 +93,7 @@ const writePlayersJson = (players) => {
 	}
 }
 
-const makeAllInactive = (players) => {
+const makeAllInactive = (players) => { // Makes all players inactive again
 	players.map((player) => {
 		player.active = false;
 		return player;
@@ -107,14 +106,24 @@ const splitRoles = (players, roleList) => {
 	players.forEach((player) => {
 		if (!player.active) return;
 		player.roles.forEach((role) => {
-			role = role.replace(" ","");
-			roleList[role].push(player.name);
+			role = role.replace(" ", "");
+			if (checkAvoided(player)) {
+				for (let i = 0; i < config.chanceOfJoining; i++) {
+					roleList[role].push(player.name);
+				}
+			} else {
+				roleList[role].push(player.name);
+			}
 		});
 	});
 
 	return roleList;
 }
 
-const chooseMap = (message) => {
+const chooseMap = (message) => { // Chooses the map
 	embed.sendMap(message, maps[Math.floor(Math.random() * maps.length)]);
 };
+
+const checkAvoided = (player) => {
+	return player.matches_without_playing >= 1;
+}

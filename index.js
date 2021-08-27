@@ -17,14 +17,14 @@ for (const file of commandFiles) {
 const prefix = config.prefix;
 
 client.on("message", message => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
-  const args = message.content.slice(prefix.length).trim().split(/ +/);
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
 
 	if (!client.commands.has(command)) {
-    embed.sendReply(message, 'This command does not exist, please type **pugs!help** to see the full list of commands.');
-    return;  
-  }
+		embed.sendReply(message, 'This command does not exist, please type **pugs!help** to see the full list of commands.');
+		return;
+	}
 
 	try {
 		client.commands.get(command).execute(message, args);

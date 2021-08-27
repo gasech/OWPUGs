@@ -1,3 +1,4 @@
 {
-    "prefix": "pugs!"
+    "prefix": "pugs!",
+    "chanceOfJoining": 15
 }
