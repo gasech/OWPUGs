@@ -1,54 +1,12 @@
 [
   {
-    "user_id": 493204902940,
-    "server_id": 202189301893,
-    "name": "Player",
-    "roles": [
-      "Main Tank",
-      "Off Tank"
-    ],
-    "wins": 3,
-    "loses": 5,
-    "matches_without_playing": 1,
-    "active": false
-  },
-  {
-    "user_id": 493542354250,
-    "server_id": 2067567657893,
-    "name": "Player2",
-    "roles": [
-      "Off Tank",
-      "Main Support"
-    ],
-    "wins": 5,
-    "loses": 2,
-    "matches_without_playing": 4,
-    "active": false
-  },
-  {
-    "user_id": 493542354250,
-    "server_id": 2067567657893,
-    "name": "Player2",
-    "roles": [
-      "Off Tank",
-      "Main Support"
-    ],
-    "wins": 5,
-    "loses": 2,
-    "matches_without_playing": 4,
-    "active": false
-  },
-  {
-    "user_id": 493542354250,
-    "server_id": 2067567657893,
-    "name": "Player2",
-    "roles": [
-      "Off Tank",
-      "Main Support"
-    ],
-    "wins": 5,
-    "loses": 2,
-    "matches_without_playing": 4,
+    "user_id": "12345",
+    "server_id": "512354",
+    "name": "Test",
+    "roles": [],
+    "wins": 0,
+    "losses": 0,
+    "matches_without_playing": 0,
     "active": false
   }
 ]
