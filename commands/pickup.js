@@ -1,17 +1,17 @@
 const config = require('../config.json');
-const fs = require('fs');
-const embed = require('../embeds');
 const maps = require('../maps.json');
+const embed = require('../embeds');
+const editJSON = require('../jsonEditor');
 
 module.exports = {
 	name: 'pickup',
 	description: 'Pickup players from voice channel and sends message with teams',
-	execute(message) {
+	execute(message,args,pugState) {
 		try {
 			if (!message.member.voice.channel) return embed.sendReply(message, `You cannot start picking up players since you are not in a voice channel.`);
 			const voiceInfo = message.member.voice.channel.members.array();
 			if (voiceInfo.length <= 0) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
-			let players = readPlayersJson();
+			let players = editJSON.readPlayers();
 			const serverID = message.guild.id;
 
 			let roleList = {
@@ -49,11 +49,30 @@ module.exports = {
 					});
 				}
 			});
+			
+			players.forEach((player) => {
+				if (!player.active) return;
+				player.roles.forEach((role) => {
+					role = role.replace(" ", "");
+					if (checkAvoided(player)) {
+						for (let i = 0; i < config.chanceOfJoining; i++) {
+							roleList[role].push(player.name);
+						}
+					} else {
+						roleList[role].push(player.name);
+					}
+				});
+			});
+			
+			Object.keys(roleList).forEach((key, index) => {
+				console.log(`${key}: ${roleList[key]}`);
+				
+			});
 
-			roleList = splitRoles(players, roleList);
-			console.log(roleList);
+			pugState.pugsRunning = true;
+
 			players = makeAllInactive(players);
-			writePlayersJson(players);
+			editJSON.writePlayers(players);
 			chooseMap(message);
 		} catch (err) {
 			console.log(err);
@@ -73,48 +92,12 @@ const getPlayerRoles = (message, voiceUser) => {
 	return roles;
 }
 
-const readPlayersJson = () => {
-	let players;
-	try {
-		const data = JSON.parse(fs.readFileSync('./players.json', 'utf8'));
-		players = data;
-	} catch (err) {
-		console.error(err)
-	}
-	return players;
-}
-
-const writePlayersJson = (players) => { // Writes over players.json file
-	try {
-		fs.writeFileSync('./players.json', JSON.stringify(players, null, 2))
-	} catch (err) {
-		console.error(err)
-	}
-}
-
 const makeAllInactive = (players) => { // Makes all players inactive again
 	players.map((player) => {
 		player.active = false;
 		return player;
 	});
 	return players;
-}
-
-const splitRoles = (players, roleList) => {
-	players.forEach((player) => {
-		if (!player.active) return;
-		player.roles.forEach((role) => {
-			role = role.replace(" ", "");
-			if (checkAvoided(player)) {
-				for (let i = 0; i < config.chanceOfJoining; i++) {
-					roleList[role].push(player.name);
-				}
-			} else {
-				roleList[role].push(player.name);
-			}
-		});
-	});
-	return roleList;
 }
 
 const chooseMap = (message) => { // Chooses the map
