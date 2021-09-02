@@ -1,11 +1,11 @@
 const embed = require('../embeds');
-const fs = require('fs');
+const editJSON = require('../jsonEditor');
 
 module.exports = {
 	name: 'stats',
 	description: 'Replies with your stats or anyone that you target',
 	execute(message, args) {
-		const players = getJsonPlayers(); // json
+		const players = editJSON.readPlayers();
 		const serverID = message.guild.id;
 
 		if (args == "") {
@@ -19,19 +19,6 @@ module.exports = {
 		}
 	},
 };
-
-const getJsonPlayers = () => {
-	let players;
-
-	try {
-		const data = JSON.parse(fs.readFileSync('./players.json', 'utf8'));
-		players = data;
-	} catch (err) {
-		console.error(err)
-	}
-
-	return players;
-}
 
 const sendStats = (message, playerID, players, serverID) => {
 	const indexUser = players.findIndex(player => player.user_id === playerID && player.server_id === serverID);
