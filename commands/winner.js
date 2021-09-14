@@ -5,7 +5,7 @@ module.exports = {
 	name: 'winner',
 	description: 'Registers the winners of match',
 	execute(message, args, pugState) {
-		if (!pugState.pugsRunning) return embed.sendReply(message, "There's must be a match running, so you can register wins");
+		if (!pugState.pugsRunning) return embed.sendReply(message, "There must be a match running, so you can register wins");
 		if (args.length != 1) return embed.sendReply(message, "Incorrect usage, please use **pugs!winner team1** or **pugs!winner team2**");
 		args[0] = args[0].toLowerCase();
 		if (!["team1", "team2"].includes(args[0])) return embed.sendReply(message, "Incorrect usage, please use **pugs!winner team1** or **pugs!winner team2**");
