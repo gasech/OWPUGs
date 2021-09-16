@@ -27,8 +27,7 @@ module.exports = {
 			const playerRoles = getPlayerRoles(message, voiceUser);
 
 			const indexUser = players.findIndex(player => player.user_id === playerID && player.server_id === serverID);
-			// If not found returns -1
-			const notFound = -1; // Made a const for better understanding of the code
+			const notFound = -1; 
 
 			if (indexUser != notFound) {
 				players[indexUser].name = playerName;
@@ -106,7 +105,7 @@ const getPlayerRoles = (message, voiceUser) => {
 	return roles;
 }
 
-const makeAllInactive = (players) => { // Makes all players inactive again
+const makeAllInactive = (players) => { 
 	players.map((player) => {
 		player.active = false;
 		return player;
@@ -141,7 +140,7 @@ const checkAvoided = (player) => {
 	return player.matches_without_playing >= 1;
 }
 
-const deleteFromRolesList = (player, roleList) => { // Removes the player from all lists, this is necessary so he won't get picked again in the same team or enemy team.
+const deleteFromRolesList = (player, roleList) => {
 	Object.keys(roleList).forEach((key) => {
 		roleList[key] = roleList[key].filter(name => name !== player);
 	});
