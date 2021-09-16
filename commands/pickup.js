@@ -63,17 +63,35 @@ module.exports = {
 		});
 
 		Object.keys(roleList).forEach((key) => {
+			let counter = 1;
 			for (let i = 0; i < 2; i++) {
-				const pickedPlayer = roleList[key][Math.floor(Math.random() * roleList[key].length)];
-				deleteFromRolesList(pickedPlayer, roleList);
+				if (roleList[key].length != 0) {
+					const pickedPlayer = roleList[key][Math.floor(Math.random() * roleList[key].length)];
+					team[i][Math.round(counter / 2)] = pickedPlayer;
+					counter++;
+					deleteFromRolesList(pickedPlayer, roleList);
+				} else {
+					return embed.sendReply(message, `Not enough players in the following role: ${key}.`);
+				}
 			}
 		});
 
-		pugState.pugsRunning = true;
+		chooseMap(message, pugState);
+
+		pugState.acceptMatchPeriod = true;
+
+		message.channel.send({ embed: { color: 0x3298c7, description: `**Team 1**: \nMain Tank: ${pugState.teams[0][0]}\nOff Tank: ${pugState.teams[0][1]}\nDPS Hitscan: ${pugState.teams[0][2]}\nDPS Flex: ${pugState.teams[0][3]}\nFlex Support: ${pugState.teams[0][4]}\nMain Support: ${pugState.teams[0][5]}` } }).then(msgSent => {
+			pugState.messageTeamOneId = msgSent.id;
+		});
+
+		message.channel.send({ embed: { color: 0xfc1722, description: `**Team 2**: \nMain Tank: ${pugState.teams[1][0]}\nOff Tank: ${pugState.teams[1][1]}\nDPS Hitscan: ${pugState.teams[1][2]}\nDPS Flex: ${pugState.teams[1][3]}\nFlex Support: ${pugState.teams[1][4]}\nMain Support: ${pugState.teams[1][5]}` } }).then(msgSent => {
+			pugState.messageTeamTwoId = msgSent.id;
+		});
+
+		embed.sendMessage(message, `Teams are ready, please type **pugs!accept** or **pugs!decline** to either accept or decline the match.`);
 
 		players = makeAllInactive(players);
 		editJSON.writePlayers(players);
-		chooseMap(message, pugState);
 	},
 };
 
@@ -121,7 +139,7 @@ const resetMaps = (message, pugState) => {
 
 const checkAvoided = (player) => {
 	return player.matches_without_playing >= 1;
-};
+}
 
 const deleteFromRolesList = (player, roleList) => { // Removes the player from all lists, this is necessary so he won't get picked again in the same team or enemy team.
 	Object.keys(roleList).forEach((key) => {
