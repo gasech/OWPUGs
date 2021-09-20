@@ -1,6 +1,6 @@
 const config = require('../config.json');
-const embed = require('../embeds');
-const editJSON = require('../jsonEditor');
+const embed = require('../utils/embeds');
+const editJSON = require('../utils/jsonEditor');
 
 module.exports = {
 	name: 'pickup',

@@ -1,4 +1,4 @@
-const embed = require('../embeds');
+const embed = require('../utils/embeds');
 
 module.exports = {
   name: 'decline',
