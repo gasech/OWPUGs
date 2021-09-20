@@ -119,15 +119,8 @@ const chooseMap = (message, pugState) => {
 		resetMaps(message, pugState);
 	} else {
 		const pickedNumber = Math.floor(Math.random() * pugState.maps.length)
-		const pickedMap = pugState.maps[pickedNumber].name;
 		embed.sendMap(message, pugState.maps[pickedNumber]);
-		deleteMapFromList(pickedMap, pugState);
-	}
-}
-
-const deleteMapFromList = (pickedMap, pugState) => {
-	for (let i = pugState.maps.length; i--;) {
-		if (pugState.maps[i].name == pickedMap) pugState.maps.splice(i, 1);
+		pugState.pickedMap = pugState.maps[pickedNumber].name;
 	}
 }
 

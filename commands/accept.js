@@ -21,6 +21,7 @@ module.exports = {
 
 		editJSON.writePlayers(players);
 
+		deleteMapFromList(pugState);
 		pugState.acceptMatchPeriod = false;
 		pugState.pugsRunning = true;
 	}
@@ -42,4 +43,10 @@ const findPlayerInTeams = (playerI, pugState) => {
 	}
 
 	return found;
+}
+
+const deleteMapFromList = (pugState) => {
+	for (let i = pugState.maps.length; i--;) {
+		if (pugState.maps[i].name == pugState.pickedMap) pugState.maps.splice(i, 1);
+	}
 }

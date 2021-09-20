@@ -12,6 +12,7 @@ let pugState = {
 	pugsRunning: true,
 	teams: [["", "", "", "", "", ""], ["", "", "", "", "", ""]],
 	maps: require('./maps.json'),
+	pickedMap: "",
 	messageTeamOneId: "",
 	messageTeamTwoId: ""
 }
