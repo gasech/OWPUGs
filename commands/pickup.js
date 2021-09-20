@@ -69,8 +69,9 @@ module.exports = {
 					team[i][Math.round(counter / 2)] = pickedPlayer;
 					counter++;
 					deleteFromRolesList(pickedPlayer, roleList);
-				} else {
-					return embed.sendReply(message, `Not enough players in the following role: ${key}.`);
+				} else { 
+					embed.sendReply(message, `Not enough players in the following role: ${key}.`);
+					break;
 				}
 			}
 		});
@@ -121,7 +122,6 @@ const chooseMap = (message, pugState) => {
 		const pickedMap = pugState.maps[pickedNumber].name;
 		embed.sendMap(message, pugState.maps[pickedNumber]);
 		deleteMapFromList(pickedMap, pugState);
-		console.log(pugState.maps);
 	}
 }
 
