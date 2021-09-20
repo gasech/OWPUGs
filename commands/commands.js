@@ -20,7 +20,6 @@ module.exports = {
 
 		for (let i of commandFiles) {
 			const commandFile = require(`./${i}`);
-			console.log(commandFile);
 			commandsMessage += `**Command**: ${prefix}${commandFile.name}\n`;
 			commandsMessage += `**Description**: ${commandFile.description}\n\n`;
 		}

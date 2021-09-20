@@ -31,7 +31,7 @@ client.on("message", message => {
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
 	
-	if (!client.commands.has(command)) return embed.sendReply(message, 'This command does not exist, please type **pugs!help** to see the full list of commands.');
+	if (!client.commands.has(command)) return embed.sendReply(message, 'This command does not exist, please type **pugs!commands** to see the full list of commands.');
 
 	try {
 		client.commands.get(command).execute(message, args, pugState);
