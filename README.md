@@ -42,7 +42,7 @@ Main Tank, Off Tank, DPS Hitscan, DPS Flex, Flex Support, Main Support
 
 To start picking up teams, you need atleast 12 players in a voice channel, type `pugs!pickup` and it should start picking up players and setting up teams.
 
-The rest should be pretty much straightforward, you can type `pugs!help` to see all the commands
+The rest should be pretty much straightforward, you can type `pugs!commands` to see all the commands
 
 **Project status**
 
