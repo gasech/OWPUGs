@@ -44,15 +44,6 @@ To start picking up teams, you need atleast 12 players in a voice channel, type 
 
 The rest should be pretty much straightforward, you can type `pugs!commands` to see all the commands
 
-**Project status**
+**Tasks**
 
-- [x] Setup Discord Bot for the first time
-- [x] Setup Depedencies
-- [x] Command Handler
-- [x] Pickup Players from Voice Channel
-- [x] Arrange Teams
-- [x] Choose Maps
-- [x] Register wins and losses from players
-- [ ] Add integration with MongoDB (Register wins and losses)
-- [ ] Ready to be used
-- [ ] More features (in the future)
+- [ ] Add integration with MongoDB
