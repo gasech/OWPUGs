@@ -68,7 +68,6 @@ module.exports = {
 					const pickedPlayer = roleList[key][Math.floor(Math.random() * roleList[key].length)];
 					pugState.teams[i][Math.round(counter / 2)] = pickedPlayer;
 					counter++;
-					console.log(counter);
 					deleteFromRolesList(pickedPlayer, roleList);
 				} else { 
 					embed.sendReply(message, `Not enough players in the following role: ${key}.`);
@@ -91,7 +90,7 @@ module.exports = {
 
 		embed.sendMessage(message, `Teams are ready, please type **pugs!accept** or **pugs!decline** to either accept or decline the match.`);
 
-		// players = makeAllInactive(players);
+		players = makeAllInactive(players);
 		editJSON.writePlayers(players);
 	},
 };
