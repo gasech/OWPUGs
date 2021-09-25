@@ -8,7 +8,6 @@ module.exports = {
     if (args.length !== 2) return embed.sendReply(message, `Incorrect usage, please use **pugs!swap player1 player2**`);
     
     const player1 = findPlayerInTeams(args[0], pugState);
-    console.log(player1);
     const player2 = findPlayerInTeams(args[1], pugState);
 
     if (player1 == 0) return embed.sendReply(message, `${args[0]} not found in neither team.`);
