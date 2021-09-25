@@ -66,7 +66,7 @@ module.exports = {
 			for (let i = 0; i < 2; i++) {
 				if (roleList[key].length != 0) {
 					const pickedPlayer = roleList[key][Math.floor(Math.random() * roleList[key].length)];
-					team[i][Math.round(counter / 2)] = pickedPlayer;
+					teams[i][Math.round(counter / 2)] = pickedPlayer;
 					counter++;
 					deleteFromRolesList(pickedPlayer, roleList);
 				} else { 
