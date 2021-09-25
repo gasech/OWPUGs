@@ -8,7 +8,7 @@ module.exports = {
 	execute(message, args, pugState) {
 		if (!message.member.voice.channel) return embed.sendReply(message, `You cannot start picking up players since you are not in a voice channel.`);
 		const voiceInfo = message.member.voice.channel.members.array();
-		if (voiceInfo.length <= 0) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
+		if (voiceInfo.length <= 12) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
 		let players = editJSON.readPlayers();
 		const serverID = message.guild.id;
 
