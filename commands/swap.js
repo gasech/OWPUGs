@@ -1,7 +1,4 @@
 const embed = require('../utils/embeds');
-const config = require('../config.json');
-
-const prefix = config.prefix;
 
 module.exports = {
   name: 'swap',
