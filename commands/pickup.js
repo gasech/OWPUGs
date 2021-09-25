@@ -61,13 +61,14 @@ module.exports = {
 			});
 		});
 
+		let counter = -1;
 		Object.keys(roleList).forEach((key) => {
-			let counter = 1;
 			for (let i = 0; i < 2; i++) {
 				if (roleList[key].length != 0) {
 					const pickedPlayer = roleList[key][Math.floor(Math.random() * roleList[key].length)];
-					teams[i][Math.round(counter / 2)] = pickedPlayer;
+					pugState.teams[i][Math.round(counter / 2)] = pickedPlayer;
 					counter++;
+					console.log(counter);
 					deleteFromRolesList(pickedPlayer, roleList);
 				} else { 
 					embed.sendReply(message, `Not enough players in the following role: ${key}.`);
@@ -90,7 +91,7 @@ module.exports = {
 
 		embed.sendMessage(message, `Teams are ready, please type **pugs!accept** or **pugs!decline** to either accept or decline the match.`);
 
-		players = makeAllInactive(players);
+		// players = makeAllInactive(players);
 		editJSON.writePlayers(players);
 	},
 };
