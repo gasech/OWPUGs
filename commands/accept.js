@@ -12,13 +12,14 @@ module.exports = {
 		let players = editJSON.readPlayers();
 
 		for (let i = 0; i < players.length; i++) {
-			if (!findPlayerInTeams(players[i], pugState)) {
-				pugState.players[i].matchesWithoutPlaying++;
+			if (!findPlayerInTeams(players[i], pugState) && players[i].active) {
+				players[i].matches_without_playing++;
 			} else {
-				pugState.players[i].matchesWithoutPlaying = 0;
+				players[i].matches_without_playing = 0;
 			}
 		}
 
+		players = makeAllInactive(players);
 		editJSON.writePlayers(players);
 
 		deleteMapFromList(pugState);
@@ -49,4 +50,12 @@ const deleteMapFromList = (pugState) => {
 	for (let i = pugState.maps.length; i--;) {
 		if (pugState.maps[i].name == pugState.pickedMap) pugState.maps.splice(i, 1);
 	}
+}
+
+const makeAllInactive = (players) => { 
+	players.map((player) => {
+		player.active = false;
+		return player;
+	});
+	return players;
 }
