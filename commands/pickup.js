@@ -76,6 +76,8 @@ module.exports = {
 			}
 		});
 
+		if(counter != 11) return embed.sendMessage(message, `Not enough players in roles.`);
+
 		chooseMap(message, pugState);
 
 		pugState.acceptMatchPeriod = true;
@@ -90,7 +92,6 @@ module.exports = {
 
 		embed.sendMessage(message, `Teams are ready, please type **pugs!accept** or **pugs!decline** to either accept or decline the match.`);
 
-		players = makeAllInactive(players);
 		editJSON.writePlayers(players);
 	},
 };
@@ -104,14 +105,6 @@ const getPlayerRoles = (message, voiceUser) => {
 		}
 	});
 	return roles;
-}
-
-const makeAllInactive = (players) => { 
-	players.map((player) => {
-		player.active = false;
-		return player;
-	});
-	return players;
 }
 
 const chooseMap = (message, pugState) => {
