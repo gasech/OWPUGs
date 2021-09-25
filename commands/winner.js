@@ -9,8 +9,9 @@ module.exports = {
 		if (args.length != 1) return embed.sendReply(message, "Incorrect usage, please use **pugs!winner team1** or **pugs!winner team2**");
 		args[0] = args[0].toLowerCase();
 		if (!["team1", "team2"].includes(args[0])) return embed.sendReply(message, "Incorrect usage, please use **pugs!winner team1** or **pugs!winner team2**");
-
 		const winner = args[0] === "team1" ? 0 : 1;
+		const loser = args[0] === "team1" ? 1 : 0;
+
 		let players = editJSON.readPlayers();
 
 		pugState.teams[0].forEach((playerT) => {
@@ -30,6 +31,8 @@ module.exports = {
 				players[playerIndex].losses++;
 			}
 		});
+
+		embed.sendMessage(message, `Match ended, **team ${winner+1}** is the winner!\n\n All players from **team ${winner+1}** have been granted with a win.\nAll players from **team ${loser+1}** have been granted with a loss.`)
 
 		editJSON.writePlayers(players);
 		pugState.pugsRunning = false;
