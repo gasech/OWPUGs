@@ -9,7 +9,7 @@ client.commands = new Discord.Collection();
 
 let pugState = {
 	acceptMatchPeriod: false,
-	pugsRunning: true,
+	pugsRunning: false,
 	teams: [["", "", "", "", "", ""], ["", "", "", "", "", ""]],
 	maps: require('./maps.json'),
 	pickedMap: "",
