@@ -15,7 +15,7 @@ module.exports = {
 		let players = editJSON.readPlayers();
 
 		pugState.teams[0].forEach((playerT) => {
-			const playerIndex = players.findIndex(player => player.name === playerT);
+			const playerIndex = players.findIndex(player => JSON.stringify(playerT) == JSON.stringify(player));
 			if (winner == 0) {
 				players[playerIndex].wins++;
 			} else {
@@ -24,7 +24,7 @@ module.exports = {
 		});
 
 		pugState.teams[1].forEach((playerT) => {
-			const playerIndex = players.findIndex(player => player.name === playerT);
+			const playerIndex = players.findIndex(player => JSON.stringify(playerT) == JSON.stringify(player));
 			if (winner == 1) {
 				players[playerIndex].wins++;
 			} else {
@@ -32,8 +32,7 @@ module.exports = {
 			}
 		});
 
-		embed.sendMessage(message, `Match ended, **team ${winner+1}** is the winner!\n\n All players from **team ${winner+1}** have been granted with a win.\nAll players from **team ${loser+1}** have been granted with a loss.`)
-
+		embed.sendMessage(message, `Match ended, **team ${winner+1}** is the winner!\n\n All players from **team ${winner+1}** have been granted with a win.\nAll players from **team ${loser+1}** have been granted with a loss.`);
 		editJSON.writePlayers(players);
 		pugState.pugsRunning = false;
 	},

@@ -19,6 +19,14 @@ module.exports = {
 			}
 		}
 
+		pugState.teams[0].forEach((playerT) => {
+			playerT.matches_without_playing = 0;
+		});
+	
+		pugState.teams[1].forEach((playerT) => {
+			playerT.matches_without_playing = 0;
+		});
+
 		players = makeAllInactive(players);
 		editJSON.writePlayers(players);
 
@@ -32,13 +40,13 @@ const findPlayerInTeams = (playerI, pugState) => {
 	let found = false;
 
 	for (let player of pugState.teams[0]) {
-		if (playerI.name == player) {
+		if (JSON.stringify(playerI) == JSON.stringify(player)) {
 			found = true;
 		}
 	}
 
 	for (let player of pugState.teams[1]) {
-		if (playerI.name == player) {
+		if (JSON.stringify(playerI) == JSON.stringify(player)) {
 			found = true;
 		}
 	}

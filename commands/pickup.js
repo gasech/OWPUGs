@@ -8,7 +8,7 @@ module.exports = {
 	execute(message, args, pugState) {
 		if (!message.member.voice.channel) return embed.sendReply(message, `You cannot start picking up players since you are not in a voice channel.`);
 		const voiceInfo = message.member.voice.channel.members.array();
-		if (voiceInfo.length <= 12) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
+		if (voiceInfo.length <= 0) return embed.sendReply(message, `You need atleast 12 players to start the PUG.`);
 		let players = editJSON.readPlayers();
 		const serverID = message.guild.id;
 
@@ -53,10 +53,10 @@ module.exports = {
 				role = role.replace(" ", "");
 				if (checkAvoided(player)) {
 					for (let i = 0; i < config.chanceOfJoining; i++) {
-						roleList[role].push(player.name);
+						roleList[role].push(player);
 					}
 				} else {
-					roleList[role].push(player.name);
+					roleList[role].push(player);
 				}
 			});
 		});
@@ -82,11 +82,11 @@ module.exports = {
 
 		pugState.acceptMatchPeriod = true;
 
-		message.channel.send({ embed: { color: 0x3298c7, description: `**Team 1**: \nMain Tank: ${pugState.teams[0][0]}\nOff Tank: ${pugState.teams[0][1]}\nDPS Hitscan: ${pugState.teams[0][2]}\nDPS Flex: ${pugState.teams[0][3]}\nFlex Support: ${pugState.teams[0][4]}\nMain Support: ${pugState.teams[0][5]}` } }).then(msgSent => {
+		message.channel.send({ embed: { color: 0x3298c7, description: `**Team 1**: \nMain Tank: ${pugState.teams[0][0].name}\nOff Tank: ${pugState.teams[0][1].name}\nDPS Hitscan: ${pugState.teams[0][2].name}\nDPS Flex: ${pugState.teams[0][3].name}\nFlex Support: ${pugState.teams[0][4].name}\nMain Support: ${pugState.teams[0][5].name}` } }).then(msgSent => {
 			pugState.messageTeamOneId = msgSent.id;
 		});
 
-		message.channel.send({ embed: { color: 0xfc1722, description: `**Team 2**: \nMain Tank: ${pugState.teams[1][0]}\nOff Tank: ${pugState.teams[1][1]}\nDPS Hitscan: ${pugState.teams[1][2]}\nDPS Flex: ${pugState.teams[1][3]}\nFlex Support: ${pugState.teams[1][4]}\nMain Support: ${pugState.teams[1][5]}` } }).then(msgSent => {
+		message.channel.send({ embed: { color: 0xfc1722, description: `**Team 2**: \nMain Tank: ${pugState.teams[1][0].name}\nOff Tank: ${pugState.teams[1][1].name}\nDPS Hitscan: ${pugState.teams[1][2].name}\nDPS Flex: ${pugState.teams[1][3].name}\nFlex Support: ${pugState.teams[1][4].name}\nMain Support: ${pugState.teams[1][5].name}` } }).then(msgSent => {
 			pugState.messageTeamTwoId = msgSent.id;
 		});
 
@@ -128,6 +128,6 @@ const checkAvoided = (player) => {
 
 const deleteFromRolesList = (player, roleList) => {
 	Object.keys(roleList).forEach((key) => {
-		roleList[key] = roleList[key].filter(name => name !== player);
+		roleList[key] = roleList[key].filter(name => JSON.stringify(name) !== JSON.stringify(player));
 	});
 }
